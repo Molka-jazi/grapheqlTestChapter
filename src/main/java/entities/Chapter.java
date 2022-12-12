@@ -1,21 +1,24 @@
 package entities;
 
+import java.util.Objects;
 
 public class Chapter {
 	private String id;
 	private String name;
 	private String course;
 	private int  order;
+	private Book book;
 	public Chapter() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Chapter(String id, String name, String course, int order) {
+	public Chapter(String id, String name, String course, int order,Book book) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.course = course;
 		this.order = order;
+		this.book=book;
 	}
 	public String getId() {
 		return id;
@@ -41,15 +44,15 @@ public class Chapter {
 	public void setOrder(int order) {
 		this.order = order;
 	}
+
+	@Override
+	public String toString() {
+		return "Chapter [id=" + id + ", name=" + name + ", course=" + course + ", order=" + order + ", book=" + book
+				+ "]";
+	}
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((course == null) ? 0 : course.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + order;
-		return result;
+		return Objects.hash(book, course, id, name, order);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -60,23 +63,13 @@ public class Chapter {
 		if (getClass() != obj.getClass())
 			return false;
 		Chapter other = (Chapter) obj;
-		if (course == null) {
-			if (other.course != null)
-				return false;
-		} else if (!course.equals(other.course))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (order != other.order)
-			return false;
-		return true;
+		return Objects.equals(book, other.book) && Objects.equals(course, other.course) && Objects.equals(id, other.id)
+				&& Objects.equals(name, other.name) && order == other.order;
+	}
+	public Book getBook() {
+		return book;
+	}
+	public void setBook(Book book) {
+		this.book = book;
 	}
 }

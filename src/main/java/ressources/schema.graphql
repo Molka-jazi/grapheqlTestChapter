@@ -1,0 +1,38 @@
+type Chapter
+{
+id:String
+name:String
+course:String
+order:integer
+book:Book
+}
+
+type Book
+{
+id:String
+titre:String
+}
+
+type Query
+{
+getAllBook:[Book]
+getAllChapter:[Chapter]
+getBookById(String id):integer
+getChapterById(String id):integer
+}
+
+type Mutation
+{
+addBook(Book book):String
+updateBook(Book i):String
+deleteBook(String id):String
+addChapter(Chapter chapter):String
+updateChapter(Chapter i):String
+deleteChapter(String id):String
+}
+
+schema
+{
+query:Query
+mutation:Mutation
+}
